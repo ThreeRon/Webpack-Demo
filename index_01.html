@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <script>
+    <%= compilation.assets[htmlWebpackPlugin.files.chunks.main.entry].source() %>
+  </script>
+</head>
+<body>
+  <div class="header"><h1><%= htmlWebpackPlugin.options.title %></h1><hr></div>
+  <div class="content">
+    <h2><%= htmlWebpackPlugin.options.data %></h2>
+
+    <h2>htmlWebpackPlugin.options:</h2>
+    <% for(var key in htmlWebpackPlugin.options) { %>
+    【<%= key %>】<%= JSON.stringify(htmlWebpackPlugin.options[key]) %><br>
+    <% } %>
+
+    <h2>htmlWebpackPlugin.files</h2>
+    <% for(var key in htmlWebpackPlugin.files) { %>
+    【<%= key %>】<%= JSON.stringify(htmlWebpackPlugin.files[key]) %><br>
+    <% } %>
+
+  </div>
+  <div class="footer"><hr>this is the footer</div>
+
+  <% for(var key in htmlWebpackPlugin.files.chunks) { %>
+        <script src="<%= htmlWebpackPlugin.files.chunks[key].entry %>"></script>
+  <% } %>
+
+</body>
+</html>
